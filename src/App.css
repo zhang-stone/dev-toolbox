@@ -1,0 +1,270 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #323232;
+  background: #252525;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand h1 {
+  margin: 0;
+  color: #f1f1f1;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand-icon {
+  position: relative;
+  display: inline-flex;
+  width: 26px;
+  height: 22px;
+  flex: 0 0 auto;
+}
+
+.brand-chevron {
+  position: absolute;
+  left: 2px;
+  top: 3px;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #1b78b6;
+  border-right: 3px solid #1b78b6;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.brand-cursor {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  width: 12px;
+  height: 3px;
+  border-radius: 999px;
+  background: #1b78b6;
+}
+
+.nav {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 13px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #c7c7c7;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link-active {
+  border-color: #3b3b3b;
+  background: #303030;
+  color: #fff;
+}
+
+.panels {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.panel:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  height: 46px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.panel-title-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+}
+
+.btn-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.toggle-btn,
+.copy-btn {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggle-btn:hover,
+.copy-btn:hover:not(:disabled) {
+  background: var(--accent-bg);
+}
+
+.toggle-btn.btn-active {
+  background: var(--accent-bg);
+  color: var(--text-h);
+  border-color: var(--accent-border, var(--border));
+}
+
+.copy-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.input-area {
+  flex: 1;
+  resize: none;
+  border: none;
+  padding: 16px;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text-h);
+  outline: none;
+}
+
+.input-area::placeholder {
+  color: var(--text);
+  opacity: 0.5;
+}
+
+.output-area {
+  flex: 1;
+  margin: 0;
+  padding: 16px;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--code-bg);
+  color: var(--text-h);
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.output-area code {
+  font-size: inherit;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  display: block;
+}
+
+.result-stack {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.messages {
+  display: grid;
+  gap: 6px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.message {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.message-error {
+  color: #dc2626;
+}
+
+.message-warning {
+  color: #b45309;
+}
+
+.preview-area {
+  flex: 1;
+  padding: 16px;
+  overflow: auto;
+  color: var(--text-h);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.preview-area .placeholder {
+  color: var(--text);
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px 24px;
+  }
+
+  .brand {
+    gap: 14px;
+  }
+
+  .brand h1 {
+    font-size: 24px;
+  }
+
+  .panels {
+    flex-direction: column;
+  }
+
+  .panel:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel {
+    flex: 1;
+  }
+}
