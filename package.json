@@ -3,9 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://zhang-stone.github.io/dev-toolbox/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "postbuild": "cp dist/index.html dist/404.html && mkdir -p dist/md dist/curl && cp dist/index.html dist/md/index.html && cp dist/index.html dist/curl/index.html",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run"

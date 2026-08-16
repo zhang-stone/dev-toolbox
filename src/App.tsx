@@ -1,26 +1,32 @@
 import { useCallback, useEffect, useState } from 'react'
 import { CurlPage } from './pages/CurlPage'
 import { MarkdownPage } from './pages/MarkdownPage'
+import {
+  getRouteFromPathname,
+  withBase,
+  type AppRoute,
+} from './utils/basePath'
 import 'github-markdown-css/github-markdown.css'
 import './App.css'
 
-type Route = '/md' | '/curl'
+const BASE = import.meta.env.BASE_URL
 
-const ROUTES: Array<{ path: Route, label: string }> = [
+const ROUTES: Array<{ path: AppRoute, label: string }> = [
   { path: '/md', label: 'Markdown' },
   { path: '/curl', label: 'curl' },
 ]
 
-function getRoute(): Route {
-  return window.location.pathname === '/curl' ? '/curl' : '/md'
+function getRoute(): AppRoute {
+  return getRouteFromPathname(window.location.pathname, BASE)
 }
 
 function App() {
-  const [route, setRoute] = useState<Route>(getRoute)
+  const [route, setRoute] = useState<AppRoute>(getRoute)
 
   useEffect(() => {
-    if (window.location.pathname !== route) {
-      window.history.replaceState(null, '', route)
+    const nextUrl = withBase(route, BASE)
+    if (window.location.pathname !== nextUrl) {
+      window.history.replaceState(null, '', nextUrl)
     }
 
     const handlePopState = () => setRoute(getRoute())
@@ -29,10 +35,10 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [route])
 
-  const navigate = useCallback((nextRoute: Route) => {
+  const navigate = useCallback((nextRoute: AppRoute) => {
     if (nextRoute === route) return
 
-    window.history.pushState(null, '', nextRoute)
+    window.history.pushState(null, '', withBase(nextRoute, BASE))
     setRoute(nextRoute)
   }, [route])
 
